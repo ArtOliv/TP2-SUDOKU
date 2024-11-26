@@ -1,8 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <getopt.h>
 
-int resolver(char tabuleiro[9][9]);
+char** criaTabuleiro();
 
-int acharPosicaoVazia(char tabuleiro[9][9], int coord[2]);
+void destroiTabuleiro(char **tabuleiro);
 
-int verificaValido(char tabuleiro[9][9], int coord[2], int num);
+int verificaValidadeTabuleiro(char **tabuleiro);
+
+int acharPosicaoVazia(char **tabuleiro, int coord[2]);
+
+int verificaValido(char **tabuleiro, int coord[2], int num);
+
+int resolver(char **tabuleiro);

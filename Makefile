@@ -3,6 +3,7 @@ CFLAGS = -Wall
 EXECBT = backtracking
 OBJ = main.o in_out.o backtracking.o
 INTERFACEBT = Interface_sudoku/backtracking.h Interface_sudoku/in_out.h
+CAMINHO = ./Entrada_saida/Entrada/
 
 all: $(OBJ)
 	$(PC) $(OBJ) $(CFLAGS) -o $(EXECBT)
@@ -21,4 +22,4 @@ clean:
 	rm $(EXECBT)
 
 run: $(EXECBT)
-	./$(EXECBT)
+	./$(EXECBT) -i $(CAMINHO)sudoku.txt -o $(CAMINHO)resultado.txt

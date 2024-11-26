@@ -1,6 +1,51 @@
 #include "../Interface_sudoku/backtracking.h"
 
-int acharPosicaoVazia(char tabuleiro[9][9], int coord[2]){
+char** criaTabuleiro(){
+    char** tabuleiro = (char**) malloc (9 * sizeof(char*));
+    if(tabuleiro == NULL){
+        printf("Erro na alocação do tabuleiro!\n");
+        return NULL;
+    }
+
+    for(int i = 0; i < 9; i++){
+        tabuleiro[i] = (char*) malloc (9 * sizeof(char));
+        if(tabuleiro[i] == NULL){
+            printf("Erro na alocação da linha do tabuleiro!\n");
+            return NULL;
+        }
+    }
+
+    return tabuleiro;
+}
+
+void destroiTabuleiro(char **tabuleiro){
+    if(tabuleiro != NULL){
+        for(int i = 0; i < 9; i++){
+            free(tabuleiro[i]);
+        }
+        free(tabuleiro);
+    }
+}
+
+int verificaValidadeTabuleiro(char **tabuleiro){
+    for(int i = 0; i < 9; i++){
+        for(int j = 0; j < 9; j++){
+            if(tabuleiro[i][j] != 'v'){
+                int num = tabuleiro[i][j] - '0';
+                tabuleiro[i][j] = 'v';
+
+                if(!verificaValido(tabuleiro, (int[2]){i, j}, num)){
+                    return 1;
+                }
+
+                tabuleiro[i][j] = num + '0';
+            }
+        }
+    }
+    return 0;
+}
+
+int acharPosicaoVazia(char **tabuleiro, int coord[2]){
     for(int i = 0; i < 9; i++){
         for(int j = 0; j < 9; j++){
             if(tabuleiro[i][j] == 'v'){
@@ -13,7 +58,7 @@ int acharPosicaoVazia(char tabuleiro[9][9], int coord[2]){
     return 0;
 }
 
-int verificaValido(char tabuleiro[9][9], int coord[2], int num){
+int verificaValido(char **tabuleiro, int coord[2], int num){
     for(int i = 0; i < 9; i++){
         if(tabuleiro[i][coord[1]] == num + '0'){
             return 0;
@@ -39,7 +84,7 @@ int verificaValido(char tabuleiro[9][9], int coord[2], int num){
     return 1;
 }
 
-int resolver(char tabuleiro[9][9]){
+int resolver(char **tabuleiro){
     int coord[2];
 
     if(acharPosicaoVazia(tabuleiro, coord) == 0){
