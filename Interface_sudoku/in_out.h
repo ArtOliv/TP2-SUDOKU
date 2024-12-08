@@ -1,11 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <math.h>
 #include <getopt.h>
 
-int lerArquivos(int argc, char *argv[], FILE **arquivoSudoku, FILE **arquivoResultado);
+int lerArquivos(int argc, char *argv[], FILE **arquivoSudoku, FILE **arquivoResultado, int *tamanho);
 
-void preencheTabuleiro(char **tabuleiro, FILE *arquivoSudoku);
+void preencheTabuleiro(int **tabuleiro, FILE *arquivoSudoku, int tamanho);
 
-void escreveResultado(char **tabuleiro, FILE *arquivoResultado);
+int verificaFimTabuleiro(FILE *arquivoSudoku);
 
-void imprimeTabuleiro(char **tabuleiro);
+void escreveResultado(int **tabuleiro, FILE *arquivoResultado, int tamanho);
+
+void imprimeTabuleiro(int **tabuleiro, int tamanho);

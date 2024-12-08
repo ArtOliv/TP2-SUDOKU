@@ -1,5 +1,5 @@
 PC = gcc
-CFLAGS = -Wall
+CFLAGS = -Wall -lm
 EXECBT = backtracking
 OBJ = main.o in_out.o backtracking.o
 INTERFACEBT = Interface_sudoku/backtracking.h Interface_sudoku/in_out.h
