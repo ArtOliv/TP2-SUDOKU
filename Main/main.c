@@ -1,5 +1,7 @@
 #include "../Interface_sudoku/backtracking.h"
+#include "../Interface_sudoku/heuristica.h"
 #include "../Interface_sudoku/in_out.h"
+#include "../Interface_sudoku/tabuleiro.h"
 
 int main(int argc, char *argv[]){
     FILE *arquivoSudoku = NULL;
@@ -12,23 +14,15 @@ int main(int argc, char *argv[]){
         int **tabuleiro = criaTabuleiro(tamanho);
 
         preencheTabuleiro(tabuleiro, arquivoSudoku, tamanho);
-        for(int i = 0; i < tamanho; i++){
-            for(int j = 0; j < tamanho; j++){
-                printf("%d ", tabuleiro[i][j]);
-            }
-            printf("\n");
-        }
 
         if(verificaValidadeTabuleiro(tabuleiro, tamanho) == 0){
             if(resolver(tabuleiro, tamanho)){
                 escreveResultado(tabuleiro, arquivoResultado, tamanho);
-            
-                imprimeTabuleiro(tabuleiro, tamanho);
             } else {
-                printf("O tabuleiro é válido, porém não tem solução.\n");
+                printf("\nUm dos tabuleiros é válido, porém não tem solução.\n");
             }
         } else {
-            printf("O tabuleiro não é válido, portanto impossível de resolver.\n");
+            printf("\nUm dos tabuleiros não é válido, portanto impossível de resolver.\n");
         }
 
         destroiTabuleiro(tabuleiro, tamanho);

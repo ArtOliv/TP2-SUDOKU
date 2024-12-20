@@ -1,3 +1,5 @@
+/* Módulo para manipulação dos arquivos(leitura e escrita) */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,5 +13,3 @@ void preencheTabuleiro(int **tabuleiro, FILE *arquivoSudoku, int tamanho);
 int verificaFimTabuleiro(FILE *arquivoSudoku);
 
 void escreveResultado(int **tabuleiro, FILE *arquivoResultado, int tamanho);
-
-void imprimeTabuleiro(int **tabuleiro, int tamanho);
